@@ -1,0 +1,299 @@
+{% extends '::app.html.twig' %} 
+{% block title %} 
+Mis Anuncios
+{% endblock %} 
+
+{% block description %} 
+
+{% endblock %} 
+
+{% block keywords %} 
+
+{% endblock %} 
+ {% block javascripts %}
+ {{ parent() }}
+{% endblock %}
+{% block content %}
+{{ parent() }}
+
+<div class="container page-content fg-dark" style="padding: 0.5rem;">
+<h2>
+	<span class="mif-profile"></span> 
+	Mi Cuenta (
+	{% if userType==0 %}
+	<span>Free</span>
+	{% elseif userType==1 %}
+	<span>Plus</span>
+	{% elseif userType==2 %}
+	<span>Premium</span>
+<<<<<<< HEAD
+	{% else %}
+=======
+	{% else%}
+>>>>>>> 9df963ee2e82d93855f7924fa180559a6a268b0f
+	<span>Unlimited</span>
+	{% endif %} )
+</h2>
+<div class="cell">
+	<div class="listview-outlook" data-role="listview">
+		<button class="image-button bg-cyan fg-white">
+	    Anuncios
+	     <span class="icon mif-map2 bg-darkCobalt"></span>
+	    </button>
+	<div class="example">
+<<<<<<< HEAD
+         {% if userType == 0 and numberAds == 1 or 
+          userType == 1 and numberAds == 3 or
+          userType == 2 and numberAds == 10 %}
+                  
+           <a href="{{ path('contactenos') }}" class="button  bg-darkMagenta fg-white padding10 text-shadow" ><span class="mif-thumbs-up mif-ani-bounce"></span> Actualizar Cuenta</a>
+
+		{% elseif userType == 3  %}
+		   <a href="{{ path('new_ads') }}" class="button success"><span class="mif-plus"></span> Nuevo</a>
+		{% else %}
+           <a href="{{ path('new_ads') }}" class="button success"><span class="mif-plus"></span> Nuevo</a>
+        {% endif %}
+       
+
+=======
+       <a href="{{ path('new_ads') }}" class="button success"><span class="mif-plus"></span> Nuevo</a>
+>>>>>>> 9df963ee2e82d93855f7924fa180559a6a268b0f
+		{% for field in ads %}
+		<div class="treeview" data-role="treeview">
+          <ul>
+           <li class="node active collapsed">
+                         <span class="leaf"><span class="mif-tag"></span> {{ field.adHeadline|e }}</span>
+                         <span class="node-toggle"></span>
+            <ul>
+            <li style="margin-bottom: 4rem;">
+				<div class="list">
+					<div class="panel">
+		                <div class="content">
+		                <div class="grid demo-grid">
+			                <div class="row cells2">
+								<div class="cell">
+								{{ field.adText|e }}
+							  <br>
+							{% if field.adPhone is not empty %}
+								<span><span class="mif-phone"></span> {{ field.adPhone|e }}</span><br>	
+							{% endif %}
+							
+							{% if field.adAddress is not empty %}
+								<span><span class="mif-location"></span> {{ field.adAddress|e }}</span><br>	
+							{% endif %}
+
+								</div>
+								<div class="cell">
+								<span class="place-right">		    
+				                      {% if field.images == 'noImages.jpg' %}
+									    	<img id="newImages" class="marginFrame" src="{{asset('images/noImages.jpg')}}">
+									  {% else %}
+									    	<img id="newImages" class="marginFrame" src="{{asset('images/ids/')}}{{ field.id }}/{{ field.images }}">
+									  {% endif %}
+								  </span>
+								</div>
+							</div>
+							<div class="row cell2">
+							<div class="cell">
+		                      <span><span class="mif-alarm-on"> Creado el    : {{ field.dateCreated|date('Y-m-d') }}</span><br>
+		                      <span><span class="mif-event-available"> Valido Hasta : {{ field.expirationDate|date('Y-m-d') }}</span><br>
+		                      <span><span class="mif-alarm"> Ultima Modificacion : {{ field.dateModified|date('Y-m-d') }}</span><br><br>
+								<label class="switch">
+		                      	{% if field.published == 1 %}
+		                            Publicado <input checked="" type="checkbox">
+		                        {% else %}
+		                            Despublicado <input  type="checkbox">
+		                        {% endif %}
+		                            <span class="check"></span>
+		                        </label>
+							</div>
+							<div class="cell"></div>
+							</div>
+						</div>
+		                 </div>
+	                 </div>
+                 </div>
+                                 
+                <span class="list-subtitle" style="float: right; padding-top: 1rem; padding-bottom: 2rem;">
+                 <a href="{{ path('inboxemailAdsR',{'idA': field.id}) }}"class="button "><span class="mif-mail"></span> Mensajes</a>
+                 <a onclick="showMessageRenewDialog('p{{ field.id }}');" class="button primary"><span class="mif-history"></span> Renovar</a>
+                 <a href="{{ path('edit_ads', {'id': field.id}) }}" class="button warning"><span class="mif-pencil"></span> Modificar</a>
+                 <a onclick="showMessageDeleteDialog('{{ field.id }}');" class="button alert"><span class="mif-cancel"></span> Eliminar</a>
+                </span><br><br><br><br>
+                <span>
+<<<<<<< HEAD
+
+
+                {% if userType == 0 and numberProducts == 3 or  userType == 1 and numberProducts == 10 %}
+                  
+                 <a href="{{ path('contactenos') }}" class="button  bg-darkMagenta fg-white padding10 text-shadow"><span class="mif-thumbs-up mif-ani-bounce"></span> Actualizar Cuenta</a>
+
+		        {% elseif userType == 2  or  userType == 3  %}
+		               <a href="{{ path('new_ads_product', {'id': field.id}) }}"class="button success"><span class="mif-plus"></span> Agregar Producto</a>
+		        {% else %}
+                       <a href="{{ path('new_ads_product', {'id': field.id}) }}"class="button success"><span class="mif-plus"></span> Agregar Producto</a>
+                {% endif %}
+
+
+
+              
+
+
+
+=======
+                <a href="{{ path('new_ads_product', {'id': field.id}) }}"class="button success"><span class="mif-plus"></span> Agregar Producto</a>
+>>>>>>> 9df963ee2e82d93855f7924fa180559a6a268b0f
+                </span>
+	     		<div class="treeview" data-role="treeview">
+                <ul>
+                 <li class="node active collapsed">
+                         <span class="leaf"><span class="mif-tags"></span> Productos y/o Servicios</span>
+                         <span class="node-toggle"></span>
+                   <ul>
+                   	<li>
+			              {% for product in field.getProducts %}
+			              <div class="panel">
+		                	<div class="content">
+						    <div class="grid demo-grid">          
+							    <div class="row cells4">
+				                    <div class="cell">
+				                    {% if product.images == 'noImages.jpg' %}
+										<img style="width: 5rem ! important; height: 5rem ! important;" class="marginFrame" src="{{asset('images/noImages.jpg')}}">
+									{% else %}
+									 	<img style="width: 5rem ! important; height: 5rem ! important;" class="marginFrame" src="{{asset('images/ids/')}}{{ field.id }}/{{ product.images }}">
+									{% endif %}</span>
+				                    </div>
+				                    <div class="cell">
+				                    <h4>{{ product.name }}</h4>
+				                    <p>{{ product.description }}</p>
+				                    </div>
+				                    <div class="cell">
+				                    <p>$ {{ product.price|number_format(0) }}</p>
+				                    </div>
+				                    <div class="cell">
+				                    <a href="{{ path('edit_product_ads', {'id': product.id}) }}"class="button warning"><span class="mif-pencil"></span> Modificar</a>
+ 							 		<br>
+ 							 		<a onclick="showMessageProductDeleteDialog('{{ product.id }}');" class="button alert"><span class="mif-cancel"></span> Eliminar&nbsp&nbsp</a>
+				                    </div>
+				                </div>
+			                </div>
+			                </div>
+			             </div>
+			   <div data-role="dialog" id="{{ product.id }}" data-close-button="true" data-type="alert" data-windows-style="true">
+					<div style="padding: 2rem;">
+					  <h1>Eliminar Producto</h1>
+					  <p>Esta a punto de eliminar el anuncio {{ product.name|e  }} , al eliminar el registro la informacion no se podra recuperar.
+					  <p>
+					      ¿ Esta seguro que desea eliminar el anuncio {{ product.name|e  }} ?.
+					  </p>
+					  <a href="{{ path('delete_product_ads', {'id': product.id}) }}" class="button fg-black"><span class="mif-warning"></span> Eliminar</a>
+					</div>
+				</div>
+						 {% endfor %}        
+                   </li>
+                  </ul>
+               </li>
+              </ul>
+              </div>     
+                <div data-role="dialog" id="{{ field.id }}" data-close-button="true" data-type="alert" data-windows-style="true">
+					<div style="padding: 2rem;">
+					  <h1>Eliminar Anuncio</h1>
+					  <p>Esta a punto de eliminar el anuncio {{ field.adHeadline|e  }} , al eliminar el registro la informacion no se podra recuperar.
+					  <p>
+					      ¿ Esta seguro que desea eliminar el anuncio {{ field.adHeadline|e  }} ?.
+					  </p>
+					  <a href="{{ path('delete_ads', {'id': field.id}) }}" class="button fg-black"><span class="mif-warning"></span> Eliminar</a>
+					</div>
+				</div> 
+				<div data-role="dialog" id="p{{ field.id }}" data-close-button="true" class="success" data-windows-style="true">
+					<div style="padding: 2rem;">
+					  <h1>Renovar Anuncio</h1>
+					  <p>Esta a punto de renovar el anuncio {{ field.adHeadline|e  }} , se agregara un año mas apartir de hoy.
+					  <p>
+					  <span class="caption">Acepto las <a class="fg-black" href="{{ path('condicionesDeUso') }}" target="_blank">Condiciones Del Servicio</a> y la <a class="fg-black" href="{{ path('politicasDePrivacidad') }}" target="_blank">	 Politica de Privacidad</a> de SeekerPlus</span>
+					  </p>
+					  <a href="{{ path('renew_ads', {'id': field.id}) }}" class="button fg-black"><span class="mif-alarm"></span> Aceptar</a>
+					</div>
+				</div>
+				   </li>
+                  </ul>
+            	</li>
+         	</ul>
+         </div> 
+ 		{% endfor %}
+		    <br><br>
+		</div>
+		<br>
+		<button class="image-button bg-orange fg-white">
+	        Banners
+	       <span class="icon mif-chart-bars bg-darkCobalt"></span>
+       </button>
+		<div class="example">
+	    {% for field in banners %}
+	     <div class="treeview" data-role="treeview">
+	          <ul>
+	           <li class="node active collapsed">
+	           	<span class="leaf"><span class="mif-tag"></span> {{ field.name }}</span>
+	            <span class="node-toggle"></span>
+	            <ul>
+		            <li style="margin-bottom: 4rem;">
+		            <div class="panel">
+		                <div class="content">
+		                <div class="grid demo-grid">
+			                <div class="row cells1">
+								<div class="cell">
+			                    <span>
+			                    <img id="newImages" class="marginFrame" src="{{ url('index') }}../../{{ field.params }}" style="width: 30rem ! important;"> 
+			                    </span><br><br>
+			                    <span >{{ field.description  }}</span><br><br>
+		                        <span><span class="mif-event-available"></span> 
+		                        Inicio   : {{ field.publishUp|date('Y-m-d') }}</span><br>
+		                        <span><span class="mif-hour-glass"></span>
+		                        Finaliza : {{ field.publishDown|date('Y-m-d') }}</span><br><br>
+		                        <label class="switch">
+		                      	{% if field.state == 1 %}
+		                            Publicado <input checked="" type="checkbox">
+		                        {% else %}
+		                            Expirado <input  type="checkbox">
+		                        {% endif %}
+		                            <span class="check"></span>
+		                        </label><br><br>
+			                    <span><span class="mif-eye"> Impresiones ({{ field.impmade  }})</span><br>
+			                    <span><span class="mif-enter"> Clicks ({{ field.clicks }})</span><br><br>
+					            <a href="{{ path('show_banner', {'id': field.id}) }}" class="button primary"><span class="mif-eye"></span> Ver</a>
+					            <br><br>
+								</div>
+							</div>
+							</div>
+		                 </div>
+	                 </div>
+					</li>
+	                  </ul>
+	            	</li>
+         		</ul>
+         	</div> 
+            {% endfor %}
+	        </div>
+	    </div>
+	    </div>
+<script type="text/javascript">
+function showMessageDeleteDialog(id){
+    var dialog = $("#"+id).data('dialog');
+    dialog.open();
+}
+
+function showMessageProductDeleteDialog(id){
+    var dialog = $("#"+id).data('dialog');
+    dialog.open();
+}
+
+function showMessageRenewDialog(id){
+    var dialog = $("#"+id).data('dialog');
+    dialog.open();
+}
+</script>
+</div>
+</div>
+{% endblock content %}
+{% block footer %}
+{% endblock footer %}
